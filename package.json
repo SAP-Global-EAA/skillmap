@@ -1,0 +1,44 @@
+{
+  "name": "skillmap2",
+  "version": "1.0.0",
+  "description": "A simple CAP project.",
+  "repository": "<Add your repository here>",
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "@cap-js/hana": "^1",
+    "@sap/cds": "^8",
+    "@sap/xssec": "^4.2.6",
+    "express": "^4"
+  },
+  "devDependencies": {
+    "@cap-js/cds-types": "^0.6",
+    "@cap-js/sqlite": "^1",
+    "@sap/cds-dk": "^8",
+    "@sap/ux-specification": "UI5-1.129",
+    "rimraf": "^5.0.5"
+  },
+  "engines": {
+    "node": "^20"
+  },
+  "scripts": {
+    "start": "cds-serve",
+    "watch-customersui": "cds watch --open customersui/webapp/index.html?sap-ui-xx-viewCache=false",
+    "undeploy": "cf undeploy skillmap2 --delete-services --delete-service-keys --delete-service-brokers",
+    "build": "rimraf resources mta_archives && mbt build --mtar archive",
+    "deploy": "cf deploy mta_archives/archive.mtar --retries 1"
+  },
+  "cds": {
+    "requires": {
+      "db": {
+        "kind": "hana"
+      }
+    },
+    "sql": {
+      "native_hana_associations": false
+    }
+  },
+  "sapux": [
+    "app/customersui"
+  ]
+}
