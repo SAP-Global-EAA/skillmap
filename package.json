@@ -36,6 +36,9 @@
     },
     "sql": {
       "native_hana_associations": false
+    },
+    "fiori": {
+      "bypass_draft": true
     }
   },
   "sapux": [
